@@ -1,0 +1,18 @@
+{
+  "name": "shiva",
+  "repo": "mbykov/shiva",
+    "description": "node.js and browser shiva-sutra module",
+  "version": "1.0.1",
+  "keywords": [],
+    "dependencies": {
+        "component/each": "*",
+        "component/map": "*",
+        "component/type": "*"
+    },
+  "license": "GPL",
+  "main": "shiva.js",
+  "scripts": [
+    "shiva.js"
+  ],
+  "remotes": []
+}
