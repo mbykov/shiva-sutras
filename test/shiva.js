@@ -1,12 +1,11 @@
 //
 try {
-    var shiva = require('shiva');
+    var shiva = require('shiva-sutras');
 } catch (err) {
     var shiva = require('../shiva');
 }
 
-
-describe('shivasutra', function() {
+describe('shiva-sutras', function() {
     describe('pratyaharas', function(){
         it('ik - i, u, r. l.', function() {
             var sutra = shiva('इक्', true).result.toString();

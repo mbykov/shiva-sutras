@@ -1,25 +1,25 @@
 {
-    "name": "shiva",
+    "name": "shiva-sutras",
     "version": "1.0.1",
-    "description": "node.js and browser shiva-sutra module",
+    "description": "node.js and browser shiva-sutras - शिवसूत्राणि",
     "main": "shiva.js",
     "scripts": {
         "test": "grunt test"
     },
     "repository": {
         "type": "git",
-        "url": "http://github.com/mbykov/shiva.git"
+        "url": "http://github.com/mbykov/shiva-sutras.git"
     },
     "keywords": [
         "sanskrit",
         "node.js",
         "component.js",
-        "shiva-sutra"
+        "shiva-sutras"
     ],
     "author": "Michael Bykov",
     "license": "GNU GPL",
     "bugs": {
-        "url": "https://github.com/mbykov/shiva/issues"
+        "url": "https://github.com/mbykov/shiva-sutras/issues"
     },
     "dependencies": {
         "each-component": "*",

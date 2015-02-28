@@ -1,9 +1,14 @@
 {
-  "name": "shiva",
-  "repo": "mbykov/shiva",
-    "description": "node.js and browser shiva-sutra module",
+  "name": "shiva-sutras",
+  "repo": "mbykov/shiva-sutras",
+    "description": "node.js and browser shiva-sutras - शिवसूत्राणि",
   "version": "1.0.1",
-  "keywords": [],
+    "keywords": [
+        "sanskrit",
+        "node.js",
+        "component.js",
+        "shiva-sutras"
+    ],
     "dependencies": {
         "component/each": "*",
         "component/map": "*",
