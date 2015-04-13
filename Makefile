@@ -17,7 +17,7 @@ test:
 		--grep $(g) \
 		--timeout 3000 \
 		$(TESTS) \
-#		2> /dev/null
+		2> /dev/null
 
 min: components shiva.js #test
 	@component build --use component-minify

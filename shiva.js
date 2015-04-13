@@ -18,17 +18,28 @@ try {
 
 module.exports = shiva; //
 
-var Shivasutra = 'अ आ इ ई उ ऊ ण् ऋ ॠ ऌ क् ए ऐ ओ औ ङ् ऐ औ च् ह य व र ट् ल ण् ञ म ङ ण न म् झ भ ञ् घ ढ ध ष् ज ब ग ड द श् ख फ छ ठ थ च ट त व् क प य् श ष स र् ह ल्';
-//Shivasutra = 'अ आ इ ई उ ऊ ण् ऋ ॠ ऌ क् ए ऐ ओ औ ङ् ऐ औ च् ह य व र ट् लँ ण् ञ म ङ ण न म् झ भ ञ् घ ढ ध ष् ज ब ग ड द श् ख फ छ ठ थ च ट त व् क प य् श ष स र् ह ल्';
+var Shivasutra = 'अ इ उ ण् ऋ ऌ क् ए ओ ङ् ऐ औ च् ह य व र ट् ल ण् ञ म ङ ण न म् झ भ ञ् घ ढ ध ष् ज ब ग ड द श् ख फ छ ठ थ च ट त व् क प य् श ष स र् ह ल्';
 var Anubandha = 'ण् क् ङ् च् ट् ण् म् ञ् ष् श् व् य् र् ल्';
 
 var Yoga = {'अ': '',  'आ':'ा',   'इ': 'ि', 'ई':'ी', 'उ': 'ु',   'ऊ':'ू',   'ऋ': 'ृ',  'ॠ': 'ॄ',  'ऌ': 'ॢ',  'ए': 'े',    'ऐ': 'ै',    'ओ': 'ो',    'औ': 'ौ' };
 
-function shiva(key, liga) {
-    if (!(this instanceof shiva)) return new shiva(key, liga);
+function shiva(key) {
+    if (!(this instanceof shiva)) return new shiva(key);
     var sh = (type(key) == 'array') ? key : shivasutra(key);
-    if (!liga) sh = yoga(sh);
     this.result = sh;
+    return this;
+}
+
+shiva.prototype.end = function() {
+    return this.result;
+}
+
+shiva.prototype.toString = function() {
+    return this.result.toString();
+}
+
+shiva.prototype.liga = function() {
+    this.result = yoga(this.result);
     return this;
 }
 
@@ -105,3 +116,9 @@ Array.prototype.diff = function(a) {
 
 
 function log() { console.log.apply(console, arguments) }
+
+
+// ===============
+
+// var Shivasutra = 'अ आ इ ई उ ऊ ण् ऋ ॠ ऌ क् ए ऐ ओ औ ङ् ऐ औ च् ह य व र ट् ल ण् ञ म ङ ण न म् झ भ ञ् घ ढ ध ष् ज ब ग ड द श् ख फ छ ठ थ च ट त व् क प य् श ष स र् ह ल्';
+//Shivasutra = 'अ आ इ ई उ ऊ ण् ऋ ॠ ऌ क् ए ऐ ओ औ ङ् ऐ औ च् ह य व र ट् लँ ण् ञ म ङ ण न म् झ भ ञ् घ ढ ध ष् ज ब ग ड द श् ख फ छ ठ थ च ट त व् क प य् श ष स र् ह ल्';

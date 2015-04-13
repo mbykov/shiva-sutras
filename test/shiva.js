@@ -8,12 +8,17 @@ try {
 describe('shiva-sutras', function() {
     describe('pratyaharas', function(){
         it('ik - i, u, r. l.', function() {
-            var sutra = shiva('इक्', true).result.toString();
-            sutra.should.equal('इ,ई,उ,ऊ,ऋ,ॠ,ऌ');
+            var sutra = shiva('इक्').toString();
+            // sutra.should.equal('इ,ई,उ,ऊ,ऋ,ॠ,ऌ');
+            sutra.should.equal('इ,उ,ऋ,ऌ');
         });
         it('ik - liga form - i, u, r. l.', function() {
-            var sutra = shiva('इक्').result.toString();
-            sutra.should.equal('ि,ी,ु,ू,ृ,ॄ,ॢ');
+            var sutra = shiva('इक्').liga().toString();
+            sutra.should.equal('ि,ु,ृ,ॢ');
+        });
+        it('ac - dirgha vowels', function() {
+            var sutra = shiva('अच्', true).dirgha.toString();
+            sutra.should.equal('अ,आ,इ,ई,उ,ऊ,ऋ,ॠ,ऌ,ए,ऐ,ओ,औ,ऐ,औ');
         });
         it('ac - all vowels', function() {
             var sutra = shiva('अच्', true).result.toString();
