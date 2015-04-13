@@ -10,10 +10,12 @@ try {
     map = require('map-component');
     each = require('each-component');
     type = require('type-component');
+    uniq = require('array-uniq');
 } catch (err) {
     map = require('map');
     each = require('each');
     type = require('type');
+    uniq = require('uniq');
 }
 
 module.exports = shiva; //
@@ -22,6 +24,9 @@ var Shivasutra = 'अ इ उ ण् ऋ ऌ क् ए ओ ङ् ऐ औ च�
 var Anubandha = 'ण् क् ङ् च् ट् ण् म् ञ् ष् श् व् य् र् ल्';
 
 var Yoga = {'अ': '',  'आ':'ा',   'इ': 'ि', 'ई':'ी', 'उ': 'ु',   'ऊ':'ू',   'ऋ': 'ृ',  'ॠ': 'ॄ',  'ऌ': 'ॢ',  'ए': 'े',    'ऐ': 'ै',    'ओ': 'ो',    'औ': 'ौ' };
+
+var Dirgha = {'अ': 'आ', 'इ': 'ई', 'उ': 'ऊ', 'ऋ': 'ॠ'};
+var Hrasva = {'आ': 'अ', 'ई': 'इ', 'ऊ': 'उ', 'ॠ': 'ऋ'};
 
 function shiva(key) {
     if (!(this instanceof shiva)) return new shiva(key);
@@ -38,16 +43,24 @@ shiva.prototype.toString = function() {
     return this.result.toString();
 }
 
-shiva.prototype.liga = function() {
-    this.result = yoga(this.result);
+shiva.prototype.dirgha = function() {
+    var result = map(this.result, function(sym) {
+        return Dirgha[sym] ? Dirgha[sym] : sym;
+    });
+    this.result = result;
     return this;
 }
 
+shiva.prototype.yoga =
+    shiva.prototype.liga = function() {
+        this.result = yoga(this.result);
+        return this;
+    }
+
 shiva.prototype.mult =
-    shiva.prototype.shiva = function(key, liga) {
+    shiva.prototype.shiva = function(key) {
     var result = [];
     var sh = (type(key) == 'array') ? key : shivasutra(key);
-    if (!liga) sh = yoga(sh);
     each(this.result, function(a) {
         each(sh, function(b) {
             result.push(a+b);
@@ -57,19 +70,15 @@ shiva.prototype.mult =
     return this;
 }
 
-shiva.prototype.del = function(key, liga) {
+shiva.prototype.del = function(key) {
     var sh = (type(key) == 'array') ? key : shivasutra(key);
-    if (!liga) sh = yoga(sh);
-    var result = this.result.diff(sh);
-    this.result = result;
+    this.result = diff(this.result, sh);
     return this;
 }
 
-shiva.prototype.add = function(key, liga) {
-    var sh = (type(key) == 'array') ? key : shivasutra(key);
-    if (!liga) sh = yoga(sh);
-    var result = this.result.concat(sh);
-    this.result = result;
+shiva.prototype.add = function(key) {
+    var sh = (type(key.result) == 'array') ? key.result : shivasutra(key);
+    this.result = uniq(this.result.concat(sh));
     return this;
 }
 
@@ -93,25 +102,16 @@ function shivasutra(key) {
 function yoga(arr) {
     var result = map(arr, function(sym) {
         if (Yoga[sym] == '') return '';
-        //if (Yoga[sym]) return(Yoga[sym] || sym);
         return Yoga[sym] ? Yoga[sym] : sym;
     });
     return result;
 }
 
 
-shiva.prototype.yoga = function() {
-    this.result = yoga(this.result);
-    return this;
-}
-
-shiva.prototype.dirgha = function(str) {
-    return this;
-}
 
 //http://stackoverflow.com/questions/1187518/javascript-array-difference
-Array.prototype.diff = function(a) {
-    return this.filter(function(i) {return a.indexOf(i) < 0;});
+function diff(result, a) {
+    return result.filter(function(i) {return a.indexOf(i) < 0 });
 };
 
 

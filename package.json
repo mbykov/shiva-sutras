@@ -24,7 +24,8 @@
     "dependencies": {
         "each-component": "*",
         "map-component": "*",
-        "type-component": "*"
+        "type-component": "*",
+        "array-uniq": "*"
     },
     "devDependencies": {
         "mocha": "*",
