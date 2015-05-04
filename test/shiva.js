@@ -24,14 +24,6 @@ describe('shiva-sutras', function() {
 });
 
 var tests = [
-    {descr: 'ik - i, u, r. l.',
-     pratyahara: 'इक्',
-     result: 'इ,उ,ऋ,ऌ'
-    },
-    {descr: 'ac - all vowels',
-     pratyahara: 'अच्',
-     result: 'अ,इ,उ,ऋ,ऌ,ए,ओ,ऐ,औ'
-    },
     {descr: 'jhal - stops and śavarga',
      pratyahara: 'झल्',
      result: 'झ,भ,घ,ढ,ध,ज,ब,ग,ड,द,ख,फ,छ,ठ,थ,च,ट,त,क,प,श,ष,स,ह'
@@ -48,14 +40,29 @@ var tests = [
      pratyahara: 'शल',
      result: 'श,ष,स,ह'
     },
-    {descr: 'aR - a, i, u', // FIXME: <<<====================
+
+    {descr: 'aR - a, i, u',
      pratyahara: 'अण्',
-     result: 'अ,इ,उ' // अ,इ,उ,ऋ,ऌ,ए,ओ,ऐ,औ,ह,य,व,र,ल
+     result: 'अ,इ,उ'
+    },
+    {descr: 'ak - a, i, u, f, x',
+     pratyahara: 'अक्',
+     result: 'अ,इ,उ,ऋ,ऌ'
+    },
+    {descr: 'ac - all vowels',
+     pratyahara: 'अच्',
+     result: 'अ,इ,उ,ऋ,ऌ,ए,ओ,ऐ,औ'
     },
     {descr: 'aw',
      pratyahara: 'अट्',
      result: 'अ,इ,उ,ऋ,ऌ,ए,ओ,ऐ,औ,ह,य,व,र'
     },
+
+    // {descr: 'aR - a, i, u, f, x, e, o, E, E',
+    //  pratyahara: 'अण्',
+    //  result: 'अ,इ,उ'
+    // },
+
     {descr: 'am',
      pratyahara: 'अम्',
      result: 'अ,इ,उ,ऋ,ऌ,ए,ओ,ऐ,औ,ह,य,व,र,ल,ञ,म,ङ,ण,न'
@@ -67,6 +74,10 @@ var tests = [
     {descr: 'al - the complete संस्कृत alphabet',
      pratyahara: 'अल्',
      result: 'अ,इ,उ,ऋ,ऌ,ए,ओ,ऐ,औ,ह,य,व,र,ल,ञ,म,ङ,ण,न,झ,भ,घ,ढ,ध,ज,ब,ग,ड,द,ख,फ,छ,ठ,थ,च,ट,त,क,प,श,ष,स,ह'
+    },
+    {descr: 'ik - i, u, r. l.',
+     pratyahara: 'इक्',
+     result: 'इ,उ,ऋ,ऌ'
     },
 
     {descr: 'il',
@@ -85,7 +96,7 @@ var tests = [
      pratyahara: 'उक्',
      result: 'उ,ऋ,ऌ'
     },
-    {descr: 'eN -guna diphtongs',
+    {descr: 'eN - guna diphtongs',
      pratyahara: 'एङ्',
      result: 'ए,ओ'
     },
@@ -122,13 +133,13 @@ var tests = [
      result: 'य,व,र,ल,ञ,म,ङ,ण,न,झ,भ,घ,ढ,ध,ज,ब,ग,ड,द,ख,फ,छ,ठ,थ,च,ट,त,क,प'
     },
 
-    {descr: 'yar',
+    {descr: 'yar - all consonants, except h',
      pratyahara: 'यर्',
      result: 'य,व,र,ल,ञ,म,ङ,ण,न,झ,भ,घ,ढ,ध,ज,ब,ग,ड,द,ख,फ,छ,ठ,थ,च,ट,त,क,प,श,ष,स'
     },
-    {descr: 'yaS',
-     pratyahara: 'यश्',
-     result: 'य,व,र,ल,ञ,म,ङ,ण,न,झ,भ,घ,ढ,ध,ज,ब,ग,ड,द'
+    {descr: 'vaS',
+     pratyahara: 'वश्',
+     result: 'व,र,ल,ञ,म,ङ,ण,न,झ,भ,घ,ढ,ध,ज,ब,ग,ड,द'
     },
     {descr: 'val',
      pratyahara: 'वल्',
@@ -146,11 +157,11 @@ var tests = [
      pratyahara: 'ङम्',
      result: 'ङ,ण,न'
     },
-    {descr: 'jaz',
+    {descr: 'Jaz - soft aspirated',
      pratyahara: 'झष्',
      result: 'झ,भ,घ,ढ,ध'
     },
-    {descr: 'JaS',
+    {descr: 'JaS - soft',
      pratyahara: 'झश्',
      result: 'झ,भ,घ,ढ,ध,ज,ब,ग,ड,द'
     },
@@ -162,11 +173,11 @@ var tests = [
      pratyahara: 'झर्',
      result: 'झ,भ,घ,ढ,ध,ज,ब,ग,ड,द,ख,फ,छ,ठ,थ,च,ट,त,क,प,श,ष,स'
     },
-
     {descr: 'Jal',
      pratyahara: 'झल्',
      result: 'झ,भ,घ,ढ,ध,ज,ब,ग,ड,द,ख,फ,छ,ठ,थ,च,ट,त,क,प,श,ष,स,ह'
     },
+
     {descr: 'Baz',
      pratyahara: 'भष्',
      result: 'भ,घ,ढ,ध'
@@ -179,11 +190,11 @@ var tests = [
      pratyahara: 'बश्',
      result: 'ब,ग,ड,द'
     },
-    {descr: 'Kay',
+    {descr: 'Kay - unvoiced stops',
      pratyahara: 'खय्',
      result: 'ख,फ,छ,ठ,थ,च,ट,त,क,प'
     },
-    {descr: 'Kar - hard consonents',
+    {descr: 'Kar - hard consonants',
      pratyahara: 'खर्',
      result: 'ख,फ,छ,ठ,थ,च,ट,त,क,प,श,ष,स'
     },
@@ -191,7 +202,7 @@ var tests = [
      pratyahara: 'छव्',
      result: 'छ,ठ,थ,च,ट,त'
     },
-    {descr: 'cay',
+    {descr: 'cay - hard unaspirated',
      pratyahara: 'चय्',
      result: 'च,ट,त,क,प'
     },

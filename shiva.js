@@ -10,7 +10,7 @@ try {
     map = require('map-component');
     each = require('each-component');
     type = require('type-component');
-    uniq = require('array-uniq');
+    uniq = require('uniq');
 } catch (err) {
     map = require('map');
     each = require('each');
@@ -23,10 +23,11 @@ module.exports = shiva; //
 var Shivasutra = 'अ इ उ ण् ऋ ऌ क् ए ओ ङ् ऐ औ च् ह य व र ट् ल ण् ञ म ङ ण न म् झ भ ञ् घ ढ ध ष् ज ब ग ड द श् ख फ छ ठ थ च ट त व् क प य् श ष स र् ह ल्';
 var Anubandha = 'ण् क् ङ् च् ट् ण् म् ञ् ष् श् व् य् र् ल्';
 
-var Yoga = {'अ': '',  'आ':'ा',   'इ': 'ि', 'ई':'ी', 'उ': 'ु',   'ऊ':'ू',   'ऋ': 'ृ',  'ॠ': 'ॄ',  'ऌ': 'ॢ',  'ए': 'े',    'ऐ': 'ै',    'ओ': 'ो',    'औ': 'ौ' };
+var Yoga = {'अ': '',  'आ':'ा',   'इ': 'ि', 'ई':'ी', 'उ': 'ु',  'ऊ': 'ू', 'ऋ': 'ृ',  'ॠ': 'ॄ',  'ऌ': 'ॢ',  'ए': 'े',    'ऐ': 'ै',    'ओ': 'ो',    'औ': 'ौ' };
 
 var Dirgha = {'अ': 'आ', 'इ': 'ई', 'उ': 'ऊ', 'ऋ': 'ॠ'};
-var Hrasva = {'आ': 'अ', 'ई': 'इ', 'ऊ': 'उ', 'ॠ': 'ऋ'};
+var ligaDirgha = {'ा': 'आ', 'ि': 'ई', 'ी': 'ई', 'ु': 'ऊ', 'ू': 'ऊ', 'ृ': 'ॠ', 'ॄ': 'ॠ'};
+var Hrasva = {'आ': 'अ', 'ई': 'इ', 'ऊ': 'उ', 'ॠ': 'ॠ'};
 
 function shiva(key) {
     if (!(this instanceof shiva)) return new shiva(key);
@@ -44,10 +45,21 @@ shiva.prototype.toString = function() {
 }
 
 shiva.prototype.dirgha = function() {
-    var result = map(this.result, function(sym) {
-        return Dirgha[sym] ? Dirgha[sym] : sym;
+    var dirgha = [];
+    this.result.forEach(function(sym) {
+        if (Dirgha[sym]) dirgha.push(Dirgha[sym]);
+        else if (ligaDirgha[sym]) dirgha.push(ligaDirgha[sym]);
     });
-    this.result = result;
+    this.result = dirgha;
+    return this;
+}
+
+shiva.prototype.hrasva = function() {
+    var hrasva = [];
+    this.result.forEach(function(sym) {
+        if (Hrasva[sym]) hrasva.push(Hrasva[sym]);
+    });
+    this.result = hrasva;
     return this;
 }
 
