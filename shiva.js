@@ -2,16 +2,6 @@
 // http://www.youtube.com/watch?v=HAbmM7gfpP8
 //
 
-// var type;
-
-// try {
-//     type = require('type-component');
-//     uniq = require('uniq');
-// } catch (err) {
-//     type = require('type');
-//     uniq = require('uniq');
-// }
-
 module.exports = shiva; //
 
 var Shivasutra = 'अ इ उ ण् ऋ ऌ क् ए ओ ङ् ऐ औ च् ह य व र ट् ल ण् ञ म ङ ण न म् झ भ ञ् घ ढ ध ष् ज ब ग ड द श् ख फ छ ठ थ च ट त व् क प य् श ष स र् ह ल्';
