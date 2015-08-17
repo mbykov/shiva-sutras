@@ -9,12 +9,12 @@ var Anubandha = 'ण् क् ङ् च् ट् ण् म् ञ् ष् 
 
 var Vowel = {'अ': '',  'आ':'ा',   'इ': 'ि', 'ई':'ी', 'उ': 'ु',  'ऊ': 'ू', 'ऋ': 'ृ',  'ॠ': 'ॄ',  'ऌ': 'ॢ',  'ए': 'े',    'ऐ': 'ै',    'ओ': 'ो',    'औ': 'ौ' };
 
-// из любой формы в долгую полную, в краткую полную
+//
 var Dirgha = {'अ': 'आ', 'इ': 'ई', 'उ': 'ऊ', 'ऋ': 'ॠ'}; // ? L=>R ? make test g=6.101.+_15_, missed in ligaDirgha, // , 'ऌ': 'ॠ'
 var ligaDirgha = {'ा': 'आ', 'ि': 'ई', 'ी': 'ई', 'ु': 'ऊ', 'ू': 'ऊ', 'ृ': 'ॠ', 'ॄ': 'ॠ', 'ॢ': 'ॠ'}; // l-dirgha=F
 var Hrasva = {'आ': 'अ', 'ई': 'इ', 'ऊ': 'उ', 'ॠ': 'ऋ'};
 var ligaHrasva = {'ा': 'अ', 'ि': 'इ', 'ी': 'इ', 'ु': 'उ', 'ू': 'उ', 'ृ': 'ऋ', 'ॄ': 'ऋ'};
-// очень коряво, нужно бы как в constable
+// TODO: constable
 
 function shiva(key) {
     if (!(this instanceof shiva)) return new shiva(key);
@@ -32,8 +32,7 @@ shiva.prototype.toString = function() {
 }
 
 /*
-  неясно, нужно ли здесь это иметь вообще
-  плохо очень реальзовано - переписать в виде constable, если оставлять
+  TODO: constable
 */
 shiva.prototype.dirgha = function() {
     var dirgha = [];
@@ -79,14 +78,14 @@ shiva.prototype.mult =
         return this;
     }
 
-// ===== ????????????????????
+//
 shiva.prototype.del = function(key) {
     var sh = (typeof(key) == 'string') ? shivasutra(key) : key;
     this.result = diff(this.result, sh);
     return this;
 }
 
-// ===== ????????????????????
+//
 shiva.prototype.add = function(key) {
     var sh = (typeof(key) == 'string') ? shivasutra(key) : key;
     var sum = this.result.concat(sh.result);
@@ -131,16 +130,3 @@ function uniq(arr) {
         return self.indexOf(item) == pos;
     });
 };
-
-// var uniqueArray1 = a.filter(function(item, pos, self) {
-//     return self.indexOf(item) == pos;
-// })
-
-
-function log() { console.log.apply(console, arguments) }
-
-
-// ===============
-
-// var Shivasutra = 'अ आ इ ई उ ऊ ण् ऋ ॠ ऌ क् ए ऐ ओ औ ङ् ऐ औ च् ह य व र ट् ल ण् ञ म ङ ण न म् झ भ ञ् घ ढ ध ष् ज ब ग ड द श् ख फ छ ठ थ च ट त व् क प य् श ष स र् ह ल्';
-//Shivasutra = 'अ आ इ ई उ ऊ ण् ऋ ॠ ऌ क् ए ऐ ओ औ ङ् ऐ औ च् ह य व र ट् लँ ण् ञ म ङ ण न म् झ भ ञ् घ ढ ध ष् ज ब ग ड द श् ख फ छ ठ थ च ट त व् क प य् श ष स र् ह ल्';
