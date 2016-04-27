@@ -1,6 +1,6 @@
 {
     "name": "shiva-sutras",
-    "version": "1.0.1",
+    "version": "1.3.0",
     "description": "node.js and browser shiva-sutras - शिवसूत्राणि",
     "main": "shiva.js",
     "scripts": {
@@ -20,12 +20,6 @@
     "license": "GNU GPL",
     "bugs": {
         "url": "https://github.com/mbykov/shiva-sutras/issues"
-    },
-    "dependencies": {
-        "each-component": "*",
-        "map-component": "*",
-        "type-component": "*",
-        "array-uniq": "*"
     },
     "devDependencies": {
         "mocha": "*",
